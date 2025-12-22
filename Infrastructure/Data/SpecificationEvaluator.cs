@@ -34,6 +34,12 @@ namespace Infrastructure.Data
                 query = query.Distinct();
             }
 
+                if (spec.IsPagingEnabled)
+                    {
+                        query = query.Skip(spec.Skip).Take(spec.Take);
+                    }
+
+
             return query;
         }
 
@@ -64,11 +70,17 @@ namespace Infrastructure.Data
 
             // 2️⃣ بعد كده Distinct
             if (spec.IsDistinct)
-            {
-                selectQuery = selectQuery.Distinct();
-            }
+{
+    selectQuery = selectQuery.Distinct();
+}
 
-            return selectQuery;
+if (spec.IsPagingEnabled)
+{
+    selectQuery = selectQuery?.Skip(spec.Skip).Take(spec.Take);
+}
+
+return selectQuery ?? query.Cast<TResult>();
+
         }
     }
 }

@@ -55,7 +55,8 @@ public async Task<IReadOnlyList<Product>> GetProductsAsync(string? brand, string
 };
 
 
-    return await query.ToListAsync();
+   return await query.Skip(5).Take(5).ToListAsync();
+
 }
 
 public async Task<IReadOnlyList<string>> GetTypesAsync()
