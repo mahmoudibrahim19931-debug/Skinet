@@ -31,7 +31,7 @@ app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localho
 
 app.MapControllers();
 
-try
+try    
 {
     using var scope = app.Services.CreateScope();
     var services = scope.ServiceProvider;
